@@ -1928,36 +1928,35 @@ class Compiler
              * Check if it's a user defined function
              */
             $functions = $this->functions;
-            if (gettype($functions) === 'array') {
-                if (isset($functions[$name])) {
-                    $definition     = $functions[$name];
-                    $definitionType = gettype($definition);
 
-                    /**
-                     * Use the string as function
-                     */
-                    if ($definitionType === 'string') {
-                        return $definition . '(' . $arguments . ')';
-                    }
+            if (isset($functions[$name])) {
+                $definition     = $functions[$name];
+                $definitionType = gettype($definition);
 
-                    /**
-                     * Execute the function closure returning the compiled
-                     * definition
-                     */
-                    if ($definitionType === 'object') {
-                        if ($definition instanceof Closure) {
-                            return call_user_func_array(
-                                $definition,
-                                [$arguments, $funcArguments]
-                            );
-                        }
-                    }
-
-                    throw new BaseException(
-                        'Invalid definition for user function "'
-                        . $name . '" in ' . $expr['file'] . ' on line ' . $expr['line']
-                    );
+                /**
+                 * Use the string as function
+                 */
+                if ($definitionType === 'string') {
+                    return $definition . '(' . $arguments . ')';
                 }
+
+                /**
+                 * Execute the function closure returning the compiled
+                 * definition
+                 */
+                if ($definitionType === 'object') {
+                    if ($definition instanceof Closure) {
+                        return call_user_func_array(
+                            $definition,
+                            [$arguments, $funcArguments]
+                        );
+                    }
+                }
+
+                throw new BaseException(
+                    'Invalid definition for user function "'
+                    . $name . '" in ' . $expr['file'] . ' on line ' . $expr['line']
+                );
             }
 
             /**
