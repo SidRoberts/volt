@@ -1547,18 +1547,16 @@ class Compiler
         $extensions = $this->extensions;
 
         while (true) {
-            if (gettype($extensions) === 'array') {
-                /**
-                 * Notify the extensions about being resolving an expression
-                 */
-                $exprCode = $this->fireExtensionEvent(
-                    'resolveExpression',
-                    [$expr]
-                );
+            /**
+             * Notify the extensions about being resolving an expression
+             */
+            $exprCode = $this->fireExtensionEvent(
+                'resolveExpression',
+                [$expr]
+            );
 
-                if (gettype($exprCode) === 'string') {
-                    break;
-                }
+            if (gettype($exprCode) === 'string') {
+                break;
             }
 
             if (!isset($expr['type'])) {
@@ -1862,10 +1860,6 @@ class Compiler
     {
         $extensions = $this->extensions;
 
-        if (gettype($extensions) !== 'array') {
-            return;
-        }
-
         foreach ($extensions as $extension) {
             /**
              * Check if the extension implements the required event name
@@ -1917,18 +1911,17 @@ class Compiler
              * this function
              */
             $extensions = $this->extensions;
-            if (gettype($extensions) === 'array') {
-                /**
-                 * Notify the extensions about being compiling a function
-                 */
-                $code = $this->fireExtensionEvent(
-                    'compileFunction',
-                    [$name, $arguments, $funcArguments]
-                );
 
-                if (gettype($code) === 'string') {
-                    return $code;
-                }
+            /**
+             * Notify the extensions about being compiling a function
+             */
+            $code = $this->fireExtensionEvent(
+                'compileFunction',
+                [$name, $arguments, $funcArguments]
+            );
+
+            if (gettype($code) === 'string') {
+                return $code;
             }
 
             /**
@@ -2433,18 +2426,16 @@ class Compiler
          */
         $extensions = $this->extensions;
 
-        if (true === is_array($extensions)) {
-            /**
-             * Notify the extensions about being compiling a function
-             */
-            $code = $this->fireExtensionEvent(
-                'compileFilter',
-                [$name, $arguments, $funcArguments]
-            );
+        /**
+         * Notify the extensions about being compiling a function
+         */
+        $code = $this->fireExtensionEvent(
+            'compileFilter',
+            [$name, $arguments, $funcArguments]
+        );
 
-            if (true === is_string($code)) {
-                return $code;
-            }
+        if (true === is_string($code)) {
+            return $code;
         }
 
         /**
@@ -2720,23 +2711,17 @@ class Compiler
             }
 
             /**
-             * Check if extensions have implemented custom compilation for this
-             * statement
+             * Notify the extensions about being resolving a statement
              */
-            if (is_array($extensions)) {
-                /**
-                 * Notify the extensions about being resolving a statement
-                 */
-                $tempCompilation = $this->fireExtensionEvent(
-                    'compileStatement',
-                    [$statement]
-                );
+            $tempCompilation = $this->fireExtensionEvent(
+                'compileStatement',
+                [$statement]
+            );
 
-                if (is_string($tempCompilation)) {
-                    $compilation .= $tempCompilation;
+            if (is_string($tempCompilation)) {
+                $compilation .= $tempCompilation;
 
-                    continue;
-                }
+                continue;
             }
 
             /**
