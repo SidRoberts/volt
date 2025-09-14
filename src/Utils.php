@@ -92,7 +92,7 @@ final class Utils
         $position = 1;
 
         // Remove leading slash from the output if present (C code skips it)
-        if ($length > 0 && $pattern[0] === '/') {
+        if ($pattern[0] === '/') {
             $i = 1;
         }
 
