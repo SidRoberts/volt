@@ -2577,19 +2577,17 @@ class Compiler
         }
 
         /**
-         * "lower"/"lowercase" calls the "strtolower" function or
-         * "mb_strtolower" if the mbstring extension is loaded
+         * "lower"/"lowercase" calls the "mb_strtolower" function in the PHP userland
          */
         if ($name === "lower" || $name == "lowercase") {
-            return "Phalcon\\Text::lower(" . $arguments . ")";
+            return "mb_strtolower(" . $arguments . ")";
         }
 
         /**
-         * "upper"/"uppercase" calls the "strtoupper" function or
-         * "mb_strtoupper" if the mbstring extension is loaded
+         * "upper"/"uppercase" calls the "mb_strtoupper" function in the PHP userland
          */
         if ($name === "upper" || $name == "uppercase") {
-            return "Phalcon\\Text::upper(" . $arguments . ")";
+            return "mb_strtoupper(" . $arguments . ")";
         }
 
         /**
