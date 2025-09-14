@@ -3,4 +3,4 @@ parameters:
         - phpunit.php
     paths:
         - src
-    level: 1
+    level: 3
