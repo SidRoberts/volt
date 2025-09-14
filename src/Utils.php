@@ -73,9 +73,9 @@ final class Utils
     /**
      * Port of phalcon_replace_paths().
      *
-     * @param mixed $pattern
-     * @param mixed $paths
-     * @param mixed $replacements
+     * @param string $pattern
+     * @param array  $paths
+     * @param array  $replacements
      * @return string|false|null
      */
     public static function replacePaths(string $pattern, array $paths, array $replacements): bool|string|null
