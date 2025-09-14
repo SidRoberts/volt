@@ -270,15 +270,15 @@ final class CompileStringTest extends TestCase
                 '{{ "hello"|url_encode }}',
                 '<?= urlencode(\'hello\') ?>',
             ],
-            /*[
+            [
                 '{{ "hello"|uppercase }}',
-                '<?= strtoupper(\'hello\') ?>',
+                '<?= mb_strtoupper(\'hello\') ?>',
             ],
             [
                 '{{ "hello"|lowercase }}',
-                '<?= strtolower(\'hello\') ?>',
+                '<?= mb_strtolower(\'hello\') ?>',
             ],
-            [
+            /*[
                 '{{ ("hello" ~ "lol")|e|length }}',
                 '<?= $this->length($this->escaper->html((\'hello\' . \'lol\'))) ?>',
             ],*/
