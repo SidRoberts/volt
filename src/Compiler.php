@@ -831,7 +831,7 @@ class Compiler
          * Echo statement
          */
         if (true === $this->autoescape) {
-            return '<?= $this->escaper->escapeHtml(' . $exprCode . ')';
+            return '<?= $this->escaper->escapeHtml(' . $exprCode . ') ?>';
         }
 
         return '<?= ' . $exprCode . ' ?>';
