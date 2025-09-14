@@ -76,9 +76,9 @@ final class Utils
      * @param string $pattern
      * @param array  $paths
      * @param array  $replacements
-     * @return string|false|null
+     * @return string|false
      */
-    public static function replacePaths(string $pattern, array $paths, array $replacements): bool|string|null
+    public static function replacePaths(string $pattern, array $paths, array $replacements): false|string
     {
         if ($pattern === '') {
             return false;
