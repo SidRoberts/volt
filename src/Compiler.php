@@ -16,7 +16,7 @@ namespace Phalcon\Volt;
 use Closure;
 use Exception as BaseException;
 use Phalcon\Di\DiInterface;
-use Phalcon\Mvc\ViewBaseInterface;
+use Phalcon\Mvc\View\ViewBaseInterface;
 use Phalcon\Volt\Parser\Parser;
 
 use function addslashes;
@@ -2354,7 +2354,7 @@ class Compiler
 
             // Otherwise, take the last viewsDir
             // TODO: Come back here later
-            return $viewsDir . $path;
+            return $path;
         }
 
         return $viewsDirs . $path;
